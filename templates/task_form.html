@@ -1,0 +1,16 @@
+{% extends 'layouts/blank.html' %}
+{% block content %}
+
+<div class="w-full py-4 px-8 ">
+    <a href="{% url 'home' %}">&#8592; Back</a>
+</div>
+
+<div class="w-full max-w-[40rem] mx-auto block p-6 bg-gray-200 border border-gray-400 rounded-lg shadow hover:bg-gray-100">
+    <form method="Post" action="">
+        {%csrf_token%}
+        {{form.as_p}}
+        <input class="w-fit button" type="submit" value="submit">
+    </form>
+</div>
+
+{% endblock content %}

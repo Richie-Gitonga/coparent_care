@@ -1,0 +1,48 @@
+{% extends 'layouts/blank.html' %}
+
+{% block content %}
+
+<div class="max-w-lg mx-auto flex items-center pt-10 px-4 ">
+    <img class="w-36 h-36 rounded-full object-cover mb-4" src="{{ profile.avatar }}" />
+    <div class=" ml-10">
+        <h1>{{ info.name }}</h1>
+        <div class="flex flex-col gap-2">
+            <div class="text-gray-400 mb-2 -mt-3">@{{ profile.name }}</div>
+            {% if profile.info %}
+            <div class="mt-8 hyphens-auto">{{ profile.info|linebreaksbr }}</div>
+            {% endif %}
+            {% if info.date_of_birth %}
+            <div class="text-gray-400 mb-2 -mt-3 ">Born: {{ info.date_of_birth|linebreaksbr }}</div>
+            {% endif %}
+            {% if info.gender %}
+            {% endif %}
+            <p class="text-gray-800 font-semibold"> Gender: {{info.gender}}</p>
+            {% if info.medical %}
+            <p class="text-gray-800 font-semibold"> Medical History: {{info.medical}}</p>
+            {% endif %}
+    
+            <div>
+                <a class="button button-green" href="{% url 'profile-edit' %}">Edit Profile</a>
+            </div>
+            <div>
+                <a class="button" href="{% url 'edit_childinfo' %}">Edit Info</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% if education %}
+    {% for ed in education %}
+    <div class="max-w-lg mx-auto my-5 px-10 py-5">
+        <h3 class="text-xl font-semibold">Education</h3>
+        <hr class="my-4 w-8 h-1 bg-blue-500 rounded-xl">
+        <p class="text-sm ml-4 text-gray-600">{{ed.from_date}} - {{ed.to_date}}</p>
+        <p class="font-semibold ml-4">{{ed.school}} <span class="text-sm text-gray-600">({{ed.location}})<span></p>
+    
+        <a class="button button-green" href="{% url 'edit_education' ed.id %}">Edit</a>
+    </div>
+    
+  {% endfor %}
+{% endif %}
+
+
+{% endblock %}
